@@ -977,6 +977,7 @@ namespace YG
             
         }
 
+        //marker의 위치와 표시되는 정보 설정
         public void set_marker(int num, bool is_vol)
         {
             if (is_vol)
@@ -1007,6 +1008,7 @@ namespace YG
             }
         }
 
+        //가장 가까운 x, y를 찾아 너무 멀지 않다면 marker를 설정함. 
         public void click_marker_v(int x, int y)
         {
             //[x, y]

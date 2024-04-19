@@ -35,11 +35,14 @@ namespace YG
         private bool show_label_c = false;
         //그래프 객체
         Graph graph = null;
+        //Excel 객체
+        Excel_Class excel = null;
 
         public Form1()
         {
             InitializeComponent();
             graph = new Graph(this);
+            excel = new Excel_Class(this);
             vol_graph.ChartAreas[0].AxisX.IsMarginVisible = false;
             cur_graph.ChartAreas[0].AxisX.IsMarginVisible = false;
             marker_v.Parent = vol_graph;
@@ -539,10 +542,13 @@ namespace YG
         //save log as excel
         private void save_log_Click(object sender, EventArgs e)
         {
-            Excel_Class excel = new Excel_Class(this);
             excel.save_as_excel();
         }
-
+        //load excel file
+        private void laod_file_Click(object sender, EventArgs e)
+        {
+            excel.read_excel();
+        }
 
         //drag graph controll
         private void vol_graph_mouse_down(object sender, MouseEventArgs e)
@@ -825,6 +831,23 @@ namespace YG
             }
         }
 
+        public void set_x(List<float> x)
+        {
+            this.x = x;
+        }
+
+        public void set_y_v(List<float> y_v)
+        {
+            this.y_v = y_v;
+            graph.draw_v_graph();
+        }
+
+        public void set_y_c(List<float> y_c)
+        {
+            this.y_c = y_c;
+            graph.draw_c_graph();
+        }
+
         //test
         private void test_Click(object sender, EventArgs e)
         {
@@ -855,7 +878,7 @@ namespace YG
             tm += arpt;
         }
 
-        
+       
     }
 
 
