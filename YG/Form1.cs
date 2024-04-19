@@ -625,7 +625,7 @@ namespace YG
                 show_v_label.BackColor = Color.Lime;
                 marker_v.Visible = true;
                 round_marker_v.Visible = true;
-                graph.clilck_marker_v(e.X, e.Y);
+                graph.click_marker_v(e.X, e.Y);
             }
         }
         public void vol_marker_click(object sender, MouseEventArgs e)
@@ -635,7 +635,7 @@ namespace YG
                 show_v_label.BackColor = Color.Lime;
                 marker_v.Visible = true;
                 round_marker_v.Visible = true;
-                graph.clilck_marker_v(e.X + marker_v.Location.X, e.Y + marker_v.Location.Y);
+                graph.click_marker_v(e.X + marker_v.Location.X, e.Y + marker_v.Location.Y);
             }
         }
 
@@ -677,7 +677,7 @@ namespace YG
                 show_c_label.BackColor = Color.Lime;
                 marker_c.Visible = true;
                 round_marker_c.Visible = true;
-                graph.clilck_marker_c(e.X, e.Y);
+                graph.click_marker_c(e.X, e.Y);
             }
         }
         public void cur_marker_click(object sender, MouseEventArgs e)
@@ -687,7 +687,7 @@ namespace YG
                 show_c_label.BackColor = Color.Lime;
                 marker_c.Visible = true;
                 round_marker_c.Visible = true;
-                graph.clilck_marker_c(e.X + marker_c.Location.X, e.Y + marker_c.Location.Y);
+                graph.click_marker_c(e.X + marker_c.Location.X, e.Y + marker_c.Location.Y);
             }
         }
 
@@ -808,6 +808,7 @@ namespace YG
         {
             return yl_c;
         }
+
         //set
         public void set_marker_bar_v(int num)
         {

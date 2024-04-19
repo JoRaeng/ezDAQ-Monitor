@@ -31,10 +31,10 @@ namespace YG
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.connect_c = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -112,6 +112,7 @@ namespace YG
             this.save_log = new System.Windows.Forms.Button();
             this.arpt_value = new System.Windows.Forms.TextBox();
             this.arpt_start = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -930,32 +931,32 @@ namespace YG
             this.cur_graph.BackSecondaryColor = System.Drawing.Color.White;
             this.cur_graph.BorderlineColor = System.Drawing.Color.DimGray;
             this.cur_graph.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisX.LabelAutoFitMinFontSize = 10;
-            chartArea1.AxisX.MajorGrid.Interval = 250D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisY.LabelAutoFitMinFontSize = 10;
-            chartArea1.AxisY.MajorGrid.Interval = 10D;
-            chartArea1.AxisY.Maximum = 165D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 80F;
-            chartArea1.InnerPlotPosition.Width = 90F;
-            chartArea1.InnerPlotPosition.X = 10F;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.ShadowColor = System.Drawing.Color.White;
-            this.cur_graph.ChartAreas.Add(chartArea1);
+            chartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea7.AxisX.LabelAutoFitMinFontSize = 10;
+            chartArea7.AxisX.MajorGrid.Interval = 250D;
+            chartArea7.AxisX.Minimum = 0D;
+            chartArea7.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea7.AxisY.LabelAutoFitMinFontSize = 10;
+            chartArea7.AxisY.MajorGrid.Interval = 10D;
+            chartArea7.AxisY.Maximum = 165D;
+            chartArea7.AxisY.Minimum = 0D;
+            chartArea7.BackColor = System.Drawing.Color.Black;
+            chartArea7.InnerPlotPosition.Auto = false;
+            chartArea7.InnerPlotPosition.Height = 80F;
+            chartArea7.InnerPlotPosition.Width = 90F;
+            chartArea7.InnerPlotPosition.X = 10F;
+            chartArea7.Name = "ChartArea1";
+            chartArea7.ShadowColor = System.Drawing.Color.White;
+            this.cur_graph.ChartAreas.Add(chartArea7);
             this.cur_graph.Location = new System.Drawing.Point(9, 272);
             this.cur_graph.Name = "cur_graph";
             this.cur_graph.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.cur_graph.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Chartreuse};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
-            this.cur_graph.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Name = "Series1";
+            this.cur_graph.Series.Add(series7);
             this.cur_graph.Size = new System.Drawing.Size(661, 157);
             this.cur_graph.TabIndex = 10002;
             this.cur_graph.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cur_graph_click);
@@ -972,42 +973,42 @@ namespace YG
             this.vol_graph.BackSecondaryColor = System.Drawing.Color.White;
             this.vol_graph.BorderlineColor = System.Drawing.Color.DimGray;
             this.vol_graph.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelAutoFitMinFontSize = 10;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisX.MajorGrid.Interval = 250D;
-            chartArea2.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
-            chartArea2.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX.ScaleView.SmallScrollMinSizeType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.ScaleView.Zoomable = false;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisY.LabelAutoFitMinFontSize = 10;
-            chartArea2.AxisY.MajorGrid.Interval = 10D;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.Maximum = 85D;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 80F;
-            chartArea2.InnerPlotPosition.Width = 90F;
-            chartArea2.InnerPlotPosition.X = 10F;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.ShadowColor = System.Drawing.Color.White;
-            this.vol_graph.ChartAreas.Add(chartArea2);
+            chartArea8.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea8.AxisX.IsLabelAutoFit = false;
+            chartArea8.AxisX.LabelAutoFitMinFontSize = 10;
+            chartArea8.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea8.AxisX.MajorGrid.Interval = 250D;
+            chartArea8.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
+            chartArea8.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
+            chartArea8.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea8.AxisX.Minimum = 0D;
+            chartArea8.AxisX.ScaleView.SmallScrollMinSizeType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea8.AxisX.ScaleView.Zoomable = false;
+            chartArea8.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea8.AxisY.LabelAutoFitMinFontSize = 10;
+            chartArea8.AxisY.MajorGrid.Interval = 10D;
+            chartArea8.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea8.AxisY.Maximum = 85D;
+            chartArea8.AxisY.Minimum = 0D;
+            chartArea8.BackColor = System.Drawing.Color.Black;
+            chartArea8.InnerPlotPosition.Auto = false;
+            chartArea8.InnerPlotPosition.Height = 80F;
+            chartArea8.InnerPlotPosition.Width = 90F;
+            chartArea8.InnerPlotPosition.X = 10F;
+            chartArea8.IsSameFontSizeForAllAxes = true;
+            chartArea8.Name = "ChartArea1";
+            chartArea8.ShadowColor = System.Drawing.Color.White;
+            this.vol_graph.ChartAreas.Add(chartArea8);
             this.vol_graph.Location = new System.Drawing.Point(9, 35);
             this.vol_graph.Name = "vol_graph";
             this.vol_graph.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.vol_graph.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Chartreuse};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            this.vol_graph.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Name = "Series1";
+            this.vol_graph.Series.Add(series8);
             this.vol_graph.Size = new System.Drawing.Size(661, 157);
             this.vol_graph.TabIndex = 10003;
             this.vol_graph.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vol_graph_click);
@@ -1138,11 +1139,21 @@ namespace YG
             this.arpt_start.UseVisualStyleBackColor = false;
             this.arpt_start.Click += new System.EventHandler(this.arpt_start_click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(495, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 12);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(734, 611);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.arpt_start);
             this.Controls.Add(this.arpt_value);
             this.Controls.Add(this.save_log);
@@ -1257,6 +1268,7 @@ namespace YG
         private System.Windows.Forms.Label yl_v6;
         private System.Windows.Forms.TextBox arpt_value;
         private System.Windows.Forms.Button arpt_start;
+        private System.Windows.Forms.Label label1;
     }
 }
 

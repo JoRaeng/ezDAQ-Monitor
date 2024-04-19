@@ -16,7 +16,7 @@ namespace YG
         private float mx_c = 1;
         private float mi_c = 0;
         //화면에 표시되는 y값 범위
-        private float[] a_v = new float[2];
+        public float[] a_v = new float[2];
         private float[] a_c = new float[2];
         //화면에 표시되는 범위
         public List<int> display_v_index = new List<int>();
@@ -148,7 +148,7 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
             set_y_label(true);
             set_x_label(true);
-            vol_min_n_max();
+            //vol_min_n_max();
             set_track_bar_v();
         }
         //v 확대
@@ -177,7 +177,7 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
             set_y_label(true);
             set_x_label(true);
-            vol_min_n_max();
+            //vol_min_n_max();
             set_track_bar_v();
         }
         //c 축소
@@ -295,7 +295,7 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
                 set_x_label(true);
                 set_y_label(true);
-                vol_min_n_max();
+                //vol_min_n_max();
                 set_track_bar_v();
             }
             else
@@ -345,7 +345,7 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisX.Minimum = mi_v;
                 form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
                 set_x_label(true);
-                vol_min_n_max();
+                //vol_min_n_max();
                 set_track_bar_v();
             }
             else
@@ -780,7 +780,7 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisX.Minimum = mi_v;
             form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
             set_x_label(true);
-            vol_min_n_max();
+            //vol_min_n_max();
             set_track_bar_v();
         }
 
@@ -857,7 +857,7 @@ namespace YG
                     form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                     set_x_label(true);
                     set_y_label(true);
-                    vol_min_n_max();
+                    //vol_min_n_max();
                     set_track_bar_v();
                 }
             }
@@ -906,7 +906,7 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                 set_x_label(true);
                 set_y_label(true);
-                vol_min_n_max();
+                //vol_min_n_max();
                 set_track_bar_v();
             }
             else
@@ -994,7 +994,7 @@ namespace YG
         {
             if (is_vol)
             {
-                vol_min_n_max();
+                //vol_min_n_max();
                 int x = (int)form.get_x()[display_v_index[num]];
                 int y = (int)form.get_y_v()[display_v_index[num]];
                 Point point = get_location(x, y, is_vol);
@@ -1022,10 +1022,10 @@ namespace YG
             }
         }
 
-        public void clilck_marker_v(int x, int y)
+        public void click_marker_v(int x, int y)
         {
             //[x, y]
-            vol_min_n_max();
+            //vol_min_n_max();
             float[] point = get_cursor_x_y(x, y, true);
             distant_v.Clear();
             for(int i = 0; i < display_v_index.Count; i++)
@@ -1048,7 +1048,7 @@ namespace YG
             }
         }
 
-        public void clilck_marker_c(int x, int y)
+        public void click_marker_c(int x, int y)
         {
             //[x, y]
             cur_min_n_max();
