@@ -1,0 +1,11 @@
+C:\ezDAQ-Monitor\YG\bin\Release\YG.exe.config
+C:\ezDAQ-Monitor\YG\bin\Release\YG.exe
+C:\ezDAQ-Monitor\YG\bin\Release\YG.pdb
+C:\ezDAQ-Monitor\YG\obj\Release\YG.csproj.AssemblyReference.cache
+C:\ezDAQ-Monitor\YG\obj\Release\YG.csproj.ResolveComReference.cache
+C:\ezDAQ-Monitor\YG\obj\Release\YG.Form1.resources
+C:\ezDAQ-Monitor\YG\obj\Release\YG.Properties.Resources.resources
+C:\ezDAQ-Monitor\YG\obj\Release\YG.csproj.GenerateResource.cache
+C:\ezDAQ-Monitor\YG\obj\Release\YG.csproj.CoreCompileInputs.cache
+C:\ezDAQ-Monitor\YG\obj\Release\YG.exe
+C:\ezDAQ-Monitor\YG\obj\Release\YG.pdb
