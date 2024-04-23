@@ -11,10 +11,10 @@ namespace YG
     internal class Graph
     {
         private Form1 form = null;
-        private float mx_v = 1;
-        private float mi_v = 0;
-        private float mx_c = 1;
-        private float mi_c = 0;
+        public float mx_v = 1;
+        public float mi_v = 0;
+        public float mx_c = 1;
+        public float mi_c = 0;
         //화면에 표시되는 y값 범위
         public float[] a_v = new float[2];
         private float[] a_c = new float[2];
@@ -33,6 +33,9 @@ namespace YG
         private bool is_cur_mouse_down = false;
         private float[] before_location = new float[2];
         private float[] current_location = new float[2];
+        //marker
+        public int selected_marker_num_v = 0;
+        public int selected_marker_num_c = 0;
 
         public Graph(Form1 form)
         {
@@ -518,30 +521,10 @@ namespace YG
         }
 
         //vol그래프 화면에 보이는 범위 x값에 해당하는 y값 최대최소
-        private void vol_min_n_max()
+        public void vol_min_n_max()
         {
             float a, b;
-            display_v_y.Clear();
-            display_v_index.Clear();
-            List<float> x = form.get_x();
-            List<float> y = form.get_y_v();
-            for(int i= 0; i < x.Count; i++)
-            {
-                if (x[i] < mi_v)
-                {
-                    continue;
-                }
-                else if (x[i] >= mi_v && x[i] <= mx_v)
-                {
-                    display_v_y.Add(y[i]);
-                    display_v_index.Add(i);
-                }
-                else if (x[i] > mx_v)
-                {
-                    break;
-                }
-            }
-            set_track_bar_v();
+            
             if (display_v_y.Count != 0)
             {
                 a = display_v_y.Min();
@@ -575,30 +558,10 @@ namespace YG
         }
 
         //cur그래프 화면에 보이는 범위 x값에 해당하는 y값 최대최소
-        private void cur_min_n_max()
+        public void cur_min_n_max()
         {
             float a, b;
-            display_c_y.Clear();
-            display_c_index.Clear();
-            List<float> x = form.get_x();
-            List<float> y = form.get_y_c();
             
-            for (int i = 0; i < x.Count; i++)
-            {
-                if (x[i] < mi_c)
-                {
-                    continue;
-                }
-                else if (x[i] >= mi_c && x[i] <= mx_c)
-                {
-                    display_c_y.Add(y[i]);
-                    display_c_index.Add(i);
-                }
-                else if (x[i] > mx_c)
-                {
-                    break;
-                }
-            }
             set_track_bar_c();
             if (display_c_y.Count != 0)
             {
@@ -737,11 +700,39 @@ namespace YG
             form.get_cvscrollbar().Value = (int)(b_c[0]*1000);
         }
 
-        private void set_track_bar_v()
+        public void set_track_bar_v()
         {
+            display_v_y.Clear();
+            display_v_index.Clear();
+            List<float> x = form.get_x();
+            List<float> y = form.get_y_v();
+            for (int i = 0; i < x.Count; i++)
+            {
+                if (x[i] < mi_v)
+                {
+                    continue;
+                }
+                else if (x[i] >= mi_v && x[i] <= mx_v)
+                {
+                    display_v_y.Add(y[i]);
+                    display_v_index.Add(i);
+                }
+                else if (x[i] > mx_v)
+                {
+                    break;
+                }
+            }
             if (display_v_index.Count != 0)
             {
                 form.get_marker_bar_v().Enabled = true;
+                if (form.get_marker_bar_v().Value < display_v_index[0])
+                {
+                    form.get_marker_bar_v().Value = display_v_index[0];
+                }
+                else if (form.get_marker_bar_v().Value > display_v_index[display_v_index.Count - 1])
+                {
+                    form.get_marker_bar_v().Value = display_v_index[display_v_index.Count - 1];
+                }
                 form.get_marker_bar_v().Minimum = display_v_index[0];
                 form.get_marker_bar_v().Maximum = display_v_index[display_v_index.Count-1];
             }
@@ -751,11 +742,40 @@ namespace YG
             }
         }
 
-        private void set_track_bar_c()
+        public void set_track_bar_c()
         {
+            display_c_y.Clear();
+            display_c_index.Clear();
+            List<float> x = form.get_x();
+            List<float> y = form.get_y_c();
+
+            for (int i = 0; i < x.Count; i++)
+            {
+                if (x[i] < mi_c)
+                {
+                    continue;
+                }
+                else if (x[i] >= mi_c && x[i] <= mx_c)
+                {
+                    display_c_y.Add(y[i]);
+                    display_c_index.Add(i);
+                }
+                else if (x[i] > mx_c)
+                {
+                    break;
+                }
+            }
             if (display_c_index.Count != 0)
             {
                 form.get_marker_bar_c().Enabled = true;
+                if (form.get_marker_bar_c().Value < display_c_index[0])
+                {
+                    form.get_marker_bar_c().Value = display_c_index[0];
+                }
+                else if (form.get_marker_bar_c().Value > display_c_index[display_c_index.Count - 1])
+                {
+                    form.get_marker_bar_c().Value = display_c_index[display_c_index.Count - 1];
+                }
                 form.get_marker_bar_c().Minimum = display_c_index[0];
                 form.get_marker_bar_c().Maximum = display_c_index[display_c_index.Count-1];
             }
@@ -982,12 +1002,12 @@ namespace YG
         {
             if (is_vol)
             {
-                int x = (int)form.get_x()[display_v_index[num]];
-                int y = (int)form.get_y_v()[display_v_index[num]];
+                double x = form.get_x()[num];
+                double y = form.get_y_v()[num];
                 Point point = get_location(x, y, is_vol);
                 Point p = new Point(0, 0);
                 form.get_marker_v().Location = point;
-                form.get_marker_v().Text = ("time: " + x.ToString() + "ms\n\rV: " + y.ToString());
+                form.get_marker_v().Text = ("time: " + x.ToString() + "ms\n\rV: " + Math.Round(y, 3).ToString());
                 p.X = point.X - 6;
                 p.Y = point.Y - 5;
                 form.get_round_marker_v().Location = p;
@@ -995,12 +1015,12 @@ namespace YG
             }
             else
             {
-                int x = (int)form.get_x()[display_c_index[num]];
-                int y = (int)form.get_y_c()[display_c_index[num]];
+                double x = form.get_x()[num];
+                double y = form.get_y_c()[num];
                 Point point = get_location(x, y, is_vol);
                 Point p = new Point(0, 0);
                 form.get_marker_c().Location = point;
-                form.get_marker_c().Text = ("time: " + x.ToString() + "ms\n\rmA: " + y.ToString());
+                form.get_marker_c().Text = ("time: " + x.ToString() + "ms\n\rmA: " + Math.Round(y, 3).ToString());
                 p.X = point.X - 6;
                 p.Y = point.Y - 5;
                 form.get_round_marker_c().Location = p;
@@ -1029,8 +1049,7 @@ namespace YG
             }
             else
             {
-                set_marker(distant_v.IndexOf(distant_v.Min()), true);
-                form.set_marker_bar_v(distant_v.IndexOf(distant_v.Min()));
+                form.get_marker_bar_v().Value = num;
             }
         }
 
@@ -1054,8 +1073,7 @@ namespace YG
             }
             else
             {
-                set_marker(distant_c.IndexOf(distant_c.Min()), false);
-                form.set_marker_bar_c(distant_c.IndexOf(distant_c.Min()));
+                form.get_marker_bar_c().Value = num;
             }
         }
 

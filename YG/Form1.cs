@@ -822,12 +822,28 @@ namespace YG
             {
                 marker_bar_v.Value = num;
             }
+            else if (num < marker_bar_v.Minimum)
+            {
+                marker_bar_v.Value = marker_bar_v.Minimum;
+            }
+            else
+            {
+                marker_bar_v.Value = marker_bar_v.Maximum;
+            }
         }
         public void set_marker_bar_c(int num)
         {
             if (num >= marker_bar_c.Minimum && num <= marker_bar_c.Maximum)
             {
                 marker_bar_c.Value = num;
+            }
+            else if (num < marker_bar_c.Minimum)
+            {
+                marker_bar_c.Value= marker_bar_c.Minimum;
+            }
+            else
+            {
+                marker_bar_c.Value = marker_bar_c.Maximum;
             }
         }
 
@@ -839,13 +855,21 @@ namespace YG
         public void set_y_v(List<float> y_v)
         {
             this.y_v = y_v;
+
+            graph.mi_v = 0;
+            graph.mx_v = 10000;
             graph.draw_v_graph();
+            graph.vol_min_n_max();
         }
 
         public void set_y_c(List<float> y_c)
         {
             this.y_c = y_c;
+
+            graph.mi_c = 0;
+            graph.mx_c = 10000;
             graph.draw_c_graph();
+            graph.cur_min_n_max();
         }
 
         //test
