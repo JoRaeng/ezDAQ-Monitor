@@ -35,14 +35,11 @@ namespace YG
         private bool show_label_c = false;
         //그래프 객체
         Graph graph = null;
-        //Excel 객체
-        Excel_Class excel = null;
 
         public Form1()
         {
             InitializeComponent();
             graph = new Graph(this);
-            excel = new Excel_Class(this);
             vol_graph.ChartAreas[0].AxisX.IsMarginVisible = false;
             cur_graph.ChartAreas[0].AxisX.IsMarginVisible = false;
             marker_v.Parent = vol_graph;
@@ -542,13 +539,10 @@ namespace YG
         //save log as excel
         private void save_log_Click(object sender, EventArgs e)
         {
+            Excel_Class excel = new Excel_Class(this);
             excel.save_as_excel();
         }
-        //load excel file
-        private void laod_file_Click(object sender, EventArgs e)
-        {
-            excel.read_excel();
-        }
+
 
         //drag graph controll
         private void vol_graph_mouse_down(object sender, MouseEventArgs e)
@@ -631,7 +625,7 @@ namespace YG
                 show_v_label.BackColor = Color.Lime;
                 marker_v.Visible = true;
                 round_marker_v.Visible = true;
-                graph.click_marker_v(e.X, e.Y);
+                graph.clilck_marker_v(e.X, e.Y);
             }
         }
         public void vol_marker_click(object sender, MouseEventArgs e)
@@ -641,7 +635,7 @@ namespace YG
                 show_v_label.BackColor = Color.Lime;
                 marker_v.Visible = true;
                 round_marker_v.Visible = true;
-                graph.click_marker_v(e.X + marker_v.Location.X, e.Y + marker_v.Location.Y);
+                graph.clilck_marker_v(e.X + marker_v.Location.X, e.Y + marker_v.Location.Y);
             }
         }
 
@@ -683,7 +677,7 @@ namespace YG
                 show_c_label.BackColor = Color.Lime;
                 marker_c.Visible = true;
                 round_marker_c.Visible = true;
-                graph.click_marker_c(e.X, e.Y);
+                graph.clilck_marker_c(e.X, e.Y);
             }
         }
         public void cur_marker_click(object sender, MouseEventArgs e)
@@ -693,7 +687,7 @@ namespace YG
                 show_c_label.BackColor = Color.Lime;
                 marker_c.Visible = true;
                 round_marker_c.Visible = true;
-                graph.click_marker_c(e.X + marker_c.Location.X, e.Y + marker_c.Location.Y);
+                graph.clilck_marker_c(e.X + marker_c.Location.X, e.Y + marker_c.Location.Y);
             }
         }
 
@@ -814,21 +808,12 @@ namespace YG
         {
             return yl_c;
         }
-
         //set
         public void set_marker_bar_v(int num)
         {
             if (num >= marker_bar_v.Minimum && num <= marker_bar_v.Maximum)
             {
                 marker_bar_v.Value = num;
-            }
-            else if (num < marker_bar_v.Minimum)
-            {
-                marker_bar_v.Value = marker_bar_v.Minimum;
-            }
-            else
-            {
-                marker_bar_v.Value = marker_bar_v.Maximum;
             }
         }
         public void set_marker_bar_c(int num)
@@ -837,39 +822,6 @@ namespace YG
             {
                 marker_bar_c.Value = num;
             }
-            else if (num < marker_bar_c.Minimum)
-            {
-                marker_bar_c.Value= marker_bar_c.Minimum;
-            }
-            else
-            {
-                marker_bar_c.Value = marker_bar_c.Maximum;
-            }
-        }
-
-        public void set_x(List<float> x)
-        {
-            this.x = x;
-        }
-
-        public void set_y_v(List<float> y_v)
-        {
-            this.y_v = y_v;
-
-            graph.mi_v = 0;
-            graph.mx_v = 10000;
-            graph.draw_v_graph();
-            graph.vol_min_n_max();
-        }
-
-        public void set_y_c(List<float> y_c)
-        {
-            this.y_c = y_c;
-
-            graph.mi_c = 0;
-            graph.mx_c = 10000;
-            graph.draw_c_graph();
-            graph.cur_min_n_max();
         }
 
         //test
@@ -902,7 +854,7 @@ namespace YG
             tm += arpt;
         }
 
-       
+        
     }
 
 

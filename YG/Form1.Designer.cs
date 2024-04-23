@@ -112,7 +112,6 @@ namespace YG
             this.save_log = new System.Windows.Forms.Button();
             this.arpt_value = new System.Windows.Forms.TextBox();
             this.arpt_start = new System.Windows.Forms.Button();
-            this.laod_file = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -1019,7 +1018,7 @@ namespace YG
             // 
             // quit_c
             // 
-            this.quit_c.Location = new System.Drawing.Point(648, 12);
+            this.quit_c.Location = new System.Drawing.Point(600, 14);
             this.quit_c.Margin = new System.Windows.Forms.Padding(2);
             this.quit_c.Name = "quit_c";
             this.quit_c.Size = new System.Drawing.Size(74, 19);
@@ -1043,7 +1042,7 @@ namespace YG
             // arpt_0
             // 
             this.arpt_0.BackColor = System.Drawing.Color.Lime;
-            this.arpt_0.Location = new System.Drawing.Point(597, 46);
+            this.arpt_0.Location = new System.Drawing.Point(600, 46);
             this.arpt_0.Margin = new System.Windows.Forms.Padding(2);
             this.arpt_0.Name = "arpt_0";
             this.arpt_0.Size = new System.Drawing.Size(74, 19);
@@ -1109,12 +1108,12 @@ namespace YG
             // save_log
             // 
             this.save_log.BackColor = System.Drawing.Color.Silver;
-            this.save_log.Location = new System.Drawing.Point(495, 44);
+            this.save_log.Location = new System.Drawing.Point(264, 24);
             this.save_log.Margin = new System.Windows.Forms.Padding(2);
             this.save_log.Name = "save_log";
-            this.save_log.Size = new System.Drawing.Size(100, 19);
+            this.save_log.Size = new System.Drawing.Size(67, 19);
             this.save_log.TabIndex = 20;
-            this.save_log.Text = "Save Log Start";
+            this.save_log.Text = "SaveLog";
             this.save_log.UseVisualStyleBackColor = false;
             this.save_log.Click += new System.EventHandler(this.save_log_Click);
             // 
@@ -1130,7 +1129,7 @@ namespace YG
             // arpt_start
             // 
             this.arpt_start.BackColor = System.Drawing.Color.Silver;
-            this.arpt_start.Location = new System.Drawing.Point(597, 68);
+            this.arpt_start.Location = new System.Drawing.Point(600, 68);
             this.arpt_start.Margin = new System.Windows.Forms.Padding(2);
             this.arpt_start.Name = "arpt_start";
             this.arpt_start.Size = new System.Drawing.Size(74, 19);
@@ -1139,25 +1138,11 @@ namespace YG
             this.arpt_start.UseVisualStyleBackColor = false;
             this.arpt_start.Click += new System.EventHandler(this.arpt_start_click);
             // 
-            // laod_file
-            // 
-            this.laod_file.BackColor = System.Drawing.Color.Silver;
-            this.laod_file.Font = new System.Drawing.Font("굴림", 8F);
-            this.laod_file.Location = new System.Drawing.Point(495, 21);
-            this.laod_file.Margin = new System.Windows.Forms.Padding(2);
-            this.laod_file.Name = "laod_file";
-            this.laod_file.Size = new System.Drawing.Size(100, 19);
-            this.laod_file.TabIndex = 23;
-            this.laod_file.Text = "Load Excel File";
-            this.laod_file.UseVisualStyleBackColor = false;
-            this.laod_file.Click += new System.EventHandler(this.laod_file_Click);
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(734, 611);
-            this.Controls.Add(this.laod_file);
             this.Controls.Add(this.arpt_start);
             this.Controls.Add(this.arpt_value);
             this.Controls.Add(this.save_log);
@@ -1272,7 +1257,6 @@ namespace YG
         private System.Windows.Forms.Label yl_v6;
         private System.Windows.Forms.TextBox arpt_value;
         private System.Windows.Forms.Button arpt_start;
-        private System.Windows.Forms.Button laod_file;
     }
 }
 
