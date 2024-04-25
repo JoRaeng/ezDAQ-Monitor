@@ -31,10 +31,10 @@ namespace YG
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.connect_c = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -112,6 +112,12 @@ namespace YG
             this.save_log = new System.Windows.Forms.Button();
             this.arpt_value = new System.Windows.Forms.TextBox();
             this.arpt_start = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.browseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settings = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -120,6 +126,7 @@ namespace YG
             ((System.ComponentModel.ISupportInitialize)(this.marker_bar_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cur_graph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vol_graph)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -130,7 +137,7 @@ namespace YG
             // connect_c
             // 
             this.connect_c.BackColor = System.Drawing.Color.Silver;
-            this.connect_c.Location = new System.Drawing.Point(190, 68);
+            this.connect_c.Location = new System.Drawing.Point(190, 61);
             this.connect_c.Name = "connect_c";
             this.connect_c.Size = new System.Drawing.Size(67, 19);
             this.connect_c.TabIndex = 0;
@@ -141,7 +148,7 @@ namespace YG
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cbPort);
-            this.groupBox1.Location = new System.Drawing.Point(11, 14);
+            this.groupBox1.Location = new System.Drawing.Point(11, 31);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(169, 73);
             this.groupBox1.TabIndex = 1;
@@ -159,7 +166,7 @@ namespace YG
             // 
             // rescan_c
             // 
-            this.rescan_c.Location = new System.Drawing.Point(190, 24);
+            this.rescan_c.Location = new System.Drawing.Point(190, 31);
             this.rescan_c.Margin = new System.Windows.Forms.Padding(2);
             this.rescan_c.Name = "rescan_c";
             this.rescan_c.Size = new System.Drawing.Size(67, 19);
@@ -203,7 +210,7 @@ namespace YG
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(11, 88);
+            this.tabControl1.Location = new System.Drawing.Point(11, 105);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(711, 508);
@@ -750,7 +757,7 @@ namespace YG
             this.marker_bar_c.Enabled = false;
             this.marker_bar_c.LargeChange = 1;
             this.marker_bar_c.Location = new System.Drawing.Point(78, 434);
-            this.marker_bar_c.Maximum = 200;
+            this.marker_bar_c.Maximum = 0;
             this.marker_bar_c.Name = "marker_bar_c";
             this.marker_bar_c.Size = new System.Drawing.Size(581, 45);
             this.marker_bar_c.TabIndex = 10010;
@@ -811,7 +818,7 @@ namespace YG
             this.marker_bar_v.Enabled = false;
             this.marker_bar_v.LargeChange = 1;
             this.marker_bar_v.Location = new System.Drawing.Point(78, 205);
-            this.marker_bar_v.Maximum = 200;
+            this.marker_bar_v.Maximum = 0;
             this.marker_bar_v.Name = "marker_bar_v";
             this.marker_bar_v.Size = new System.Drawing.Size(581, 45);
             this.marker_bar_v.TabIndex = 10005;
@@ -930,32 +937,32 @@ namespace YG
             this.cur_graph.BackSecondaryColor = System.Drawing.Color.White;
             this.cur_graph.BorderlineColor = System.Drawing.Color.DimGray;
             this.cur_graph.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisX.LabelAutoFitMinFontSize = 10;
-            chartArea1.AxisX.MajorGrid.Interval = 250D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisY.LabelAutoFitMinFontSize = 10;
-            chartArea1.AxisY.MajorGrid.Interval = 10D;
-            chartArea1.AxisY.Maximum = 165D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 80F;
-            chartArea1.InnerPlotPosition.Width = 90F;
-            chartArea1.InnerPlotPosition.X = 10F;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.ShadowColor = System.Drawing.Color.White;
-            this.cur_graph.ChartAreas.Add(chartArea1);
+            chartArea11.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea11.AxisX.LabelAutoFitMinFontSize = 10;
+            chartArea11.AxisX.MajorGrid.Interval = 250D;
+            chartArea11.AxisX.Minimum = 0D;
+            chartArea11.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea11.AxisY.LabelAutoFitMinFontSize = 10;
+            chartArea11.AxisY.MajorGrid.Interval = 10D;
+            chartArea11.AxisY.Maximum = 165D;
+            chartArea11.AxisY.Minimum = 0D;
+            chartArea11.BackColor = System.Drawing.Color.Black;
+            chartArea11.InnerPlotPosition.Auto = false;
+            chartArea11.InnerPlotPosition.Height = 80F;
+            chartArea11.InnerPlotPosition.Width = 90F;
+            chartArea11.InnerPlotPosition.X = 10F;
+            chartArea11.Name = "ChartArea1";
+            chartArea11.ShadowColor = System.Drawing.Color.White;
+            this.cur_graph.ChartAreas.Add(chartArea11);
             this.cur_graph.Location = new System.Drawing.Point(9, 272);
             this.cur_graph.Name = "cur_graph";
             this.cur_graph.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.cur_graph.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Chartreuse};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
-            this.cur_graph.Series.Add(series1);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Name = "Series1";
+            this.cur_graph.Series.Add(series11);
             this.cur_graph.Size = new System.Drawing.Size(661, 157);
             this.cur_graph.TabIndex = 10002;
             this.cur_graph.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cur_graph_click);
@@ -972,42 +979,42 @@ namespace YG
             this.vol_graph.BackSecondaryColor = System.Drawing.Color.White;
             this.vol_graph.BorderlineColor = System.Drawing.Color.DimGray;
             this.vol_graph.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelAutoFitMinFontSize = 10;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisX.MajorGrid.Interval = 250D;
-            chartArea2.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
-            chartArea2.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX.ScaleView.SmallScrollMinSizeType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.ScaleView.Zoomable = false;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisY.LabelAutoFitMinFontSize = 10;
-            chartArea2.AxisY.MajorGrid.Interval = 10D;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.Maximum = 85D;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 80F;
-            chartArea2.InnerPlotPosition.Width = 90F;
-            chartArea2.InnerPlotPosition.X = 10F;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.ShadowColor = System.Drawing.Color.White;
-            this.vol_graph.ChartAreas.Add(chartArea2);
+            chartArea12.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea12.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea12.AxisX.IsLabelAutoFit = false;
+            chartArea12.AxisX.LabelAutoFitMinFontSize = 10;
+            chartArea12.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea12.AxisX.MajorGrid.Interval = 250D;
+            chartArea12.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
+            chartArea12.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
+            chartArea12.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea12.AxisX.Minimum = 0D;
+            chartArea12.AxisX.ScaleView.SmallScrollMinSizeType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea12.AxisX.ScaleView.Zoomable = false;
+            chartArea12.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea12.AxisY.LabelAutoFitMinFontSize = 10;
+            chartArea12.AxisY.MajorGrid.Interval = 10D;
+            chartArea12.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea12.AxisY.Maximum = 85D;
+            chartArea12.AxisY.Minimum = 0D;
+            chartArea12.BackColor = System.Drawing.Color.Black;
+            chartArea12.InnerPlotPosition.Auto = false;
+            chartArea12.InnerPlotPosition.Height = 80F;
+            chartArea12.InnerPlotPosition.Width = 90F;
+            chartArea12.InnerPlotPosition.X = 10F;
+            chartArea12.IsSameFontSizeForAllAxes = true;
+            chartArea12.Name = "ChartArea1";
+            chartArea12.ShadowColor = System.Drawing.Color.White;
+            this.vol_graph.ChartAreas.Add(chartArea12);
             this.vol_graph.Location = new System.Drawing.Point(9, 35);
             this.vol_graph.Name = "vol_graph";
             this.vol_graph.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.vol_graph.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Chartreuse};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            this.vol_graph.Series.Add(series2);
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.Name = "Series1";
+            this.vol_graph.Series.Add(series12);
             this.vol_graph.Size = new System.Drawing.Size(661, 157);
             this.vol_graph.TabIndex = 10003;
             this.vol_graph.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vol_graph_click);
@@ -1018,7 +1025,7 @@ namespace YG
             // 
             // quit_c
             // 
-            this.quit_c.Location = new System.Drawing.Point(600, 14);
+            this.quit_c.Location = new System.Drawing.Point(648, 29);
             this.quit_c.Margin = new System.Windows.Forms.Padding(2);
             this.quit_c.Name = "quit_c";
             this.quit_c.Size = new System.Drawing.Size(74, 19);
@@ -1031,7 +1038,7 @@ namespace YG
             // 
             this.disconnect_c.BackColor = System.Drawing.Color.Lime;
             this.disconnect_c.Font = new System.Drawing.Font("굴림", 7F);
-            this.disconnect_c.Location = new System.Drawing.Point(263, 68);
+            this.disconnect_c.Location = new System.Drawing.Point(190, 85);
             this.disconnect_c.Name = "disconnect_c";
             this.disconnect_c.Size = new System.Drawing.Size(67, 19);
             this.disconnect_c.TabIndex = 5;
@@ -1042,7 +1049,7 @@ namespace YG
             // arpt_0
             // 
             this.arpt_0.BackColor = System.Drawing.Color.Lime;
-            this.arpt_0.Location = new System.Drawing.Point(600, 46);
+            this.arpt_0.Location = new System.Drawing.Point(446, 84);
             this.arpt_0.Margin = new System.Windows.Forms.Padding(2);
             this.arpt_0.Name = "arpt_0";
             this.arpt_0.Size = new System.Drawing.Size(74, 19);
@@ -1054,10 +1061,10 @@ namespace YG
             // meas_q
             // 
             this.meas_q.Font = new System.Drawing.Font("굴림", 9F);
-            this.meas_q.Location = new System.Drawing.Point(335, 43);
+            this.meas_q.Location = new System.Drawing.Point(368, 31);
             this.meas_q.Margin = new System.Windows.Forms.Padding(2);
             this.meas_q.Name = "meas_q";
-            this.meas_q.Size = new System.Drawing.Size(67, 19);
+            this.meas_q.Size = new System.Drawing.Size(74, 19);
             this.meas_q.TabIndex = 14;
             this.meas_q.Text = "?MEAS:";
             this.meas_q.UseVisualStyleBackColor = true;
@@ -1067,10 +1074,10 @@ namespace YG
             // 
             this.irange_0.BackColor = System.Drawing.Color.Lime;
             this.irange_0.Font = new System.Drawing.Font("굴림", 8F);
-            this.irange_0.Location = new System.Drawing.Point(335, 68);
+            this.irange_0.Location = new System.Drawing.Point(368, 56);
             this.irange_0.Margin = new System.Windows.Forms.Padding(2);
             this.irange_0.Name = "irange_0";
-            this.irange_0.Size = new System.Drawing.Size(67, 19);
+            this.irange_0.Size = new System.Drawing.Size(74, 19);
             this.irange_0.TabIndex = 13;
             this.irange_0.Text = "IRANGE:0";
             this.irange_0.UseVisualStyleBackColor = false;
@@ -1080,10 +1087,10 @@ namespace YG
             // 
             this.irange_1.BackColor = System.Drawing.Color.Silver;
             this.irange_1.Font = new System.Drawing.Font("굴림", 8F);
-            this.irange_1.Location = new System.Drawing.Point(406, 68);
+            this.irange_1.Location = new System.Drawing.Point(446, 56);
             this.irange_1.Margin = new System.Windows.Forms.Padding(2);
             this.irange_1.Name = "irange_1";
-            this.irange_1.Size = new System.Drawing.Size(67, 19);
+            this.irange_1.Size = new System.Drawing.Size(74, 19);
             this.irange_1.TabIndex = 16;
             this.irange_1.Text = "IRANGE:1";
             this.irange_1.UseVisualStyleBackColor = false;
@@ -1091,10 +1098,10 @@ namespace YG
             // 
             // test_c
             // 
-            this.test_c.Location = new System.Drawing.Point(406, 43);
+            this.test_c.Location = new System.Drawing.Point(570, 29);
             this.test_c.Margin = new System.Windows.Forms.Padding(2);
             this.test_c.Name = "test_c";
-            this.test_c.Size = new System.Drawing.Size(67, 19);
+            this.test_c.Size = new System.Drawing.Size(74, 19);
             this.test_c.TabIndex = 19;
             this.test_c.Text = "test";
             this.test_c.UseVisualStyleBackColor = true;
@@ -1108,18 +1115,18 @@ namespace YG
             // save_log
             // 
             this.save_log.BackColor = System.Drawing.Color.Silver;
-            this.save_log.Location = new System.Drawing.Point(264, 24);
+            this.save_log.Location = new System.Drawing.Point(632, 84);
             this.save_log.Margin = new System.Windows.Forms.Padding(2);
             this.save_log.Name = "save_log";
-            this.save_log.Size = new System.Drawing.Size(67, 19);
+            this.save_log.Size = new System.Drawing.Size(100, 19);
             this.save_log.TabIndex = 20;
-            this.save_log.Text = "SaveLog";
+            this.save_log.Text = "Save Log Start";
             this.save_log.UseVisualStyleBackColor = false;
             this.save_log.Click += new System.EventHandler(this.save_log_Click);
             // 
             // arpt_value
             // 
-            this.arpt_value.Location = new System.Drawing.Point(495, 68);
+            this.arpt_value.Location = new System.Drawing.Point(263, 85);
             this.arpt_value.Name = "arpt_value";
             this.arpt_value.Size = new System.Drawing.Size(100, 21);
             this.arpt_value.TabIndex = 21;
@@ -1129,7 +1136,7 @@ namespace YG
             // arpt_start
             // 
             this.arpt_start.BackColor = System.Drawing.Color.Silver;
-            this.arpt_start.Location = new System.Drawing.Point(600, 68);
+            this.arpt_start.Location = new System.Drawing.Point(368, 85);
             this.arpt_start.Margin = new System.Windows.Forms.Padding(2);
             this.arpt_start.Name = "arpt_start";
             this.arpt_start.Size = new System.Drawing.Size(74, 19);
@@ -1138,11 +1145,59 @@ namespace YG
             this.arpt_start.UseVisualStyleBackColor = false;
             this.arpt_start.Click += new System.EventHandler(this.arpt_start_click);
             // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip.Size = new System.Drawing.Size(734, 24);
+            this.menuStrip.TabIndex = 25;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // Menu
+            // 
+            this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadFileToolStripMenuItem,
+            this.settings});
+            this.Menu.Name = "Menu";
+            this.Menu.Size = new System.Drawing.Size(50, 20);
+            this.Menu.Text = "Menu";
+            // 
+            // loadFileToolStripMenuItem
+            // 
+            this.loadFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.browseToolStripMenuItem,
+            this.toolStripSeparator1});
+            this.loadFileToolStripMenuItem.Name = "loadFileToolStripMenuItem";
+            this.loadFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadFileToolStripMenuItem.Text = "Load File";
+            // 
+            // browseToolStripMenuItem
+            // 
+            this.browseToolStripMenuItem.Name = "browseToolStripMenuItem";
+            this.browseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.browseToolStripMenuItem.Text = "Browse...";
+            this.browseToolStripMenuItem.Click += new System.EventHandler(this.browseToolStripMenuItem_Click);
+            // 
+            // settings
+            // 
+            this.settings.Name = "settings";
+            this.settings.Size = new System.Drawing.Size(180, 22);
+            this.settings.Text = "Settings";
+            this.settings.Click += new System.EventHandler(this.settings_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(734, 611);
+            this.ClientSize = new System.Drawing.Size(734, 621);
             this.Controls.Add(this.arpt_start);
             this.Controls.Add(this.arpt_value);
             this.Controls.Add(this.save_log);
@@ -1157,6 +1212,8 @@ namespace YG
             this.Controls.Add(this.rescan_c);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.connect_c);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -1173,6 +1230,8 @@ namespace YG
             ((System.ComponentModel.ISupportInitialize)(this.marker_bar_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cur_graph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vol_graph)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1257,6 +1316,12 @@ namespace YG
         private System.Windows.Forms.Label yl_v6;
         private System.Windows.Forms.TextBox arpt_value;
         private System.Windows.Forms.Button arpt_start;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem Menu;
+        private System.Windows.Forms.ToolStripMenuItem loadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settings;
+        private System.Windows.Forms.ToolStripMenuItem browseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

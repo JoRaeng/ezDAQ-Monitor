@@ -11,12 +11,12 @@ namespace YG
     internal class Graph
     {
         private Form1 form = null;
-        private float mx_v = 1;
-        private float mi_v = 0;
-        private float mx_c = 1;
-        private float mi_c = 0;
+        public float mx_v = 1;
+        public float mi_v = 0;
+        public float mx_c = 1;
+        public float mi_c = 0;
         //화면에 표시되는 y값 범위
-        private float[] a_v = new float[2];
+        public float[] a_v = new float[2];
         private float[] a_c = new float[2];
         //화면에 표시되는 범위
         public List<int> display_v_index = new List<int>();
@@ -33,6 +33,9 @@ namespace YG
         private bool is_cur_mouse_down = false;
         private float[] before_location = new float[2];
         private float[] current_location = new float[2];
+        //marker
+        public int selected_marker_num_v = 0;
+        public int selected_marker_num_c = 0;
 
         public Graph(Form1 form)
         {
@@ -148,8 +151,8 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
             set_y_label(true);
             set_x_label(true);
-            vol_min_n_max();
             set_track_bar_v();
+            set_marker(form.get_marker_bar_v().Value, true);
         }
         //v 확대
         public void scroll_up_v(int x, int y)
@@ -177,8 +180,8 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
             set_y_label(true);
             set_x_label(true);
-            vol_min_n_max();
             set_track_bar_v();
+            set_marker(form.get_marker_bar_v().Value, true);
         }
         //c 축소
         public void scroll_down_c(int x, int y)
@@ -232,8 +235,8 @@ namespace YG
             form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
             set_x_label(false);
             set_y_label(false);
-            cur_min_n_max();
             set_track_bar_c();
+            set_marker(form.get_marker_bar_c().Value, false);
         }
         //c 확대
         public void scroll_up_c(int x, int y)
@@ -262,8 +265,8 @@ namespace YG
             form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
             set_x_label(false);
             set_y_label(false);
-            cur_min_n_max();
             set_track_bar_c();
+            set_marker(form.get_marker_bar_c().Value, false);
         }
 
         //x축 줌아웃
@@ -295,8 +298,8 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
                 set_x_label(true);
                 set_y_label(true);
-                vol_min_n_max();
                 set_track_bar_v();
+                set_marker(form.get_marker_bar_v().Value, is_v);
             }
             else
             {
@@ -325,6 +328,7 @@ namespace YG
                 set_x_label(false);
                 set_y_label(false);
                 set_track_bar_c();
+                set_marker(form.get_marker_bar_c().Value, is_v);
             }
         }
         //x축 줌인
@@ -345,8 +349,8 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisX.Minimum = mi_v;
                 form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
                 set_x_label(true);
-                vol_min_n_max();
                 set_track_bar_v();
+                set_marker(form.get_marker_bar_v().Value, is_v);
             }
             else
             {
@@ -363,8 +367,8 @@ namespace YG
                 form.get_cur_graph().ChartAreas[0].AxisX.Minimum = mi_c;
                 form.get_cur_graph().ChartAreas[0].AxisX.Maximum = mx_c;
                 set_x_label(false);
-                cur_min_n_max();
                 set_track_bar_c();
+                set_marker(form.get_marker_bar_c().Value, is_v);
             }
         }
         //y축 줌아웃
@@ -394,6 +398,7 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisY.Minimum = a_v[0];
                 form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                 set_y_label(is_v);
+                set_marker(form.get_marker_bar_v().Value, is_v);
             }
             else
             {
@@ -419,6 +424,7 @@ namespace YG
                 form.get_cur_graph().ChartAreas[0].AxisY.Minimum = a_c[0];
                 form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
                 set_y_label(is_v);
+                set_marker(form.get_marker_bar_c().Value, is_v);
             }
         }
         //y축 줌인
@@ -439,6 +445,7 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisY.Minimum = a_v[0];
                 form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                 set_y_label(is_v);
+                set_marker(form.get_marker_bar_v().Value, is_v);
             }
             else
             {
@@ -455,6 +462,7 @@ namespace YG
                 form.get_cur_graph().ChartAreas[0].AxisY.Minimum = a_c[0];
                 form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
                 set_y_label(is_v);
+                set_marker(form.get_marker_bar_c().Value, is_v);
             }
         }
 
@@ -525,30 +533,10 @@ namespace YG
         }
 
         //vol그래프 화면에 보이는 범위 x값에 해당하는 y값 최대최소
-        private void vol_min_n_max()
+        public void vol_min_n_max()
         {
             float a, b;
-            display_v_y.Clear();
-            display_v_index.Clear();
-            List<float> x = form.get_x();
-            List<float> y = form.get_y_v();
-            for(int i= 0; i < x.Count; i++)
-            {
-                if (x[i] < mi_v)
-                {
-                    continue;
-                }
-                else if (x[i] >= mi_v && x[i] <= mx_v)
-                {
-                    display_v_y.Add(y[i]);
-                    display_v_index.Add(i);
-                }
-                else if (x[i] > mx_v)
-                {
-                    break;
-                }
-            }
-            set_track_bar_v();
+            
             if (display_v_y.Count != 0)
             {
                 a = display_v_y.Min();
@@ -582,30 +570,10 @@ namespace YG
         }
 
         //cur그래프 화면에 보이는 범위 x값에 해당하는 y값 최대최소
-        private void cur_min_n_max()
+        public void cur_min_n_max()
         {
             float a, b;
-            display_c_y.Clear();
-            display_c_index.Clear();
-            List<float> x = form.get_x();
-            List<float> y = form.get_y_c();
             
-            for (int i = 0; i < x.Count; i++)
-            {
-                if (x[i] < mi_c)
-                {
-                    continue;
-                }
-                else if (x[i] >= mi_c && x[i] <= mx_c)
-                {
-                    display_c_y.Add(y[i]);
-                    display_c_index.Add(i);
-                }
-                else if (x[i] > mx_c)
-                {
-                    break;
-                }
-            }
             set_track_bar_c();
             if (display_c_y.Count != 0)
             {
@@ -678,6 +646,7 @@ namespace YG
 
             vol_min_n_max();
             set_track_bar_v();
+            set_marker(form.get_marker_bar_v().Value, true);
         }
         
         private void v_y_auto_range()
@@ -704,6 +673,7 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisY.Maximum = b_v[1];
             set_y_label(true);
             form.get_vvscrollbar().Value = (int)(b_v[0]*1000);
+            set_marker(form.get_marker_bar_v().Value, true);
         }
 
         private void c_x_auto_range()
@@ -721,6 +691,7 @@ namespace YG
 
             cur_min_n_max();
             set_track_bar_c();
+            set_marker(form.get_marker_bar_c().Value, false);
         }
 
         private void c_y_auto_range()
@@ -742,33 +713,91 @@ namespace YG
             form.get_cur_graph().ChartAreas[0].AxisY.Maximum = b_c[1];
             set_y_label(false);
             form.get_cvscrollbar().Value = (int)(b_c[0]*1000);
+            set_marker(form.get_marker_bar_c().Value, false);
         }
 
-        private void set_track_bar_v()
+        public void set_track_bar_v()
         {
+            display_v_y.Clear();
+            display_v_index.Clear();
+            List<float> x = form.get_x();
+            List<float> y = form.get_y_v();
+            for (int i = 0; i < x.Count; i++)
+            {
+                if (x[i] < mi_v)
+                {
+                    continue;
+                }
+                else if (x[i] >= mi_v && x[i] <= mx_v)
+                {
+                    display_v_y.Add(y[i]);
+                    display_v_index.Add(i);
+                }
+                else if (x[i] > mx_v)
+                {
+                    break;
+                }
+            }
             if (display_v_index.Count != 0)
             {
                 form.get_marker_bar_v().Enabled = true;
+                if (form.get_marker_bar_v().Value < display_v_index[0])
+                {
+                    form.get_marker_bar_v().Value = display_v_index[0];
+                }
+                else if (form.get_marker_bar_v().Value > display_v_index[display_v_index.Count - 1])
+                {
+                    form.get_marker_bar_v().Value = display_v_index[display_v_index.Count - 1];
+                }
                 form.get_marker_bar_v().Minimum = display_v_index[0];
                 form.get_marker_bar_v().Maximum = display_v_index[display_v_index.Count-1];
             }
             else
             {
-                form.get_marker_bar_v().Enabled=false;
+                form.vol_marker_hide();
             }
         }
 
-        private void set_track_bar_c()
+        public void set_track_bar_c()
         {
+            display_c_y.Clear();
+            display_c_index.Clear();
+            List<float> x = form.get_x();
+            List<float> y = form.get_y_c();
+
+            for (int i = 0; i < x.Count; i++)
+            {
+                if (x[i] < mi_c)
+                {
+                    continue;
+                }
+                else if (x[i] >= mi_c && x[i] <= mx_c)
+                {
+                    display_c_y.Add(y[i]);
+                    display_c_index.Add(i);
+                }
+                else if (x[i] > mx_c)
+                {
+                    break;
+                }
+            }
             if (display_c_index.Count != 0)
             {
                 form.get_marker_bar_c().Enabled = true;
+                if (form.get_marker_bar_c().Value < display_c_index[0])
+                {
+                    form.get_marker_bar_c().Value = display_c_index[0];
+                }
+                else if (form.get_marker_bar_c().Value > display_c_index[display_c_index.Count - 1])
+                {
+                    form.get_marker_bar_c().Value = display_c_index[display_c_index.Count - 1];
+                }
                 form.get_marker_bar_c().Minimum = display_c_index[0];
                 form.get_marker_bar_c().Maximum = display_c_index[display_c_index.Count-1];
             }
             else
             {
-                form.get_marker_bar_c().Enabled = false;
+                form.cur_marker_hide();
             }
         }
         //스크롤 따라 그래프 움직임
@@ -780,8 +809,8 @@ namespace YG
             form.get_vol_graph().ChartAreas[0].AxisX.Minimum = mi_v;
             form.get_vol_graph().ChartAreas[0].AxisX.Maximum = mx_v;
             set_x_label(true);
-            vol_min_n_max();
             set_track_bar_v();
+            set_marker(form.get_marker_bar_v().Value, true);
         }
 
         private void vv_scroll()
@@ -794,6 +823,7 @@ namespace YG
             a_v[0] = -form.get_vvscrollbar().Value/1000;
             a_v[1] = -form.get_vvscrollbar().Value/1000 + range;
             set_y_label(true);
+            set_marker(form.get_marker_bar_v().Value, true);
         }
 
         private void ch_scroll()
@@ -804,8 +834,8 @@ namespace YG
             form.get_cur_graph().ChartAreas[0].AxisX.Minimum = mi_c;
             form.get_cur_graph().ChartAreas[0].AxisX.Maximum = mx_c;
             set_x_label(false);
-            cur_min_n_max();
             set_track_bar_c();
+            set_marker(form.get_marker_bar_c().Value, false);
         }
 
         private void cv_scroll()
@@ -818,6 +848,7 @@ namespace YG
             a_c[0] = -form.get_cvscrollbar().Value / 1000;
             a_c[1] = -form.get_cvscrollbar().Value/1000 + range;
             set_y_label(false);
+            set_marker(form.get_marker_bar_c().Value, false);
         }
 
 
@@ -857,8 +888,8 @@ namespace YG
                     form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                     set_x_label(true);
                     set_y_label(true);
-                    vol_min_n_max();
                     set_track_bar_v();
+                    set_marker(form.get_marker_bar_v().Value, true);
                 }
             }
             else
@@ -880,8 +911,8 @@ namespace YG
                     form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
                     set_x_label(false);
                     set_y_label(false);
-                    cur_min_n_max();
                     set_track_bar_c();
+                    set_marker(form.get_marker_bar_c().Value, false);
                 }
             }
 
@@ -906,8 +937,8 @@ namespace YG
                 form.get_vol_graph().ChartAreas[0].AxisY.Maximum = a_v[1];
                 set_x_label(true);
                 set_y_label(true);
-                vol_min_n_max();
                 set_track_bar_v();
+                set_marker(form.get_marker_bar_v().Value, true);
             }
             else
             {
@@ -927,8 +958,8 @@ namespace YG
                 form.get_cur_graph().ChartAreas[0].AxisY.Maximum = a_c[1];
                 set_x_label(false);
                 set_y_label(false);
-                cur_min_n_max();
                 set_track_bar_c();
+                set_marker(form.get_marker_bar_c().Value, false);
             }
         }
         public void mouse_up(object sender, MouseEventArgs e)
@@ -990,17 +1021,17 @@ namespace YG
             
         }
 
+        //marker의 위치와 표시되는 정보 설정
         public void set_marker(int num, bool is_vol)
         {
             if (is_vol)
             {
-                vol_min_n_max();
-                int x = (int)form.get_x()[display_v_index[num]];
-                int y = (int)form.get_y_v()[display_v_index[num]];
+                double x = form.get_x()[num];
+                double y = form.get_y_v()[num];
                 Point point = get_location(x, y, is_vol);
                 Point p = new Point(0, 0);
                 form.get_marker_v().Location = point;
-                form.get_marker_v().Text = ("time: " + x.ToString() + "ms\n\rV: " + y.ToString());
+                form.get_marker_v().Text = ("time: " + x.ToString() + "ms\n\rV: " + Math.Round(y, 3).ToString());
                 p.X = point.X - 6;
                 p.Y = point.Y - 5;
                 form.get_round_marker_v().Location = p;
@@ -1008,13 +1039,12 @@ namespace YG
             }
             else
             {
-                cur_min_n_max();
-                int x = (int)form.get_x()[display_c_index[num]];
-                int y = (int)form.get_y_c()[display_c_index[num]];
+                double x = form.get_x()[num];
+                double y = form.get_y_c()[num];
                 Point point = get_location(x, y, is_vol);
                 Point p = new Point(0, 0);
                 form.get_marker_c().Location = point;
-                form.get_marker_c().Text = ("time: " + x.ToString() + "ms\n\rmA: " + y.ToString());
+                form.get_marker_c().Text = ("time: " + x.ToString() + "ms\n\rmA: " + Math.Round(y, 3).ToString());
                 p.X = point.X - 6;
                 p.Y = point.Y - 5;
                 form.get_round_marker_c().Location = p;
@@ -1022,10 +1052,10 @@ namespace YG
             }
         }
 
-        public void clilck_marker_v(int x, int y)
+        //가장 가까운 x, y를 찾아 너무 멀지 않다면 marker를 설정함. 
+        public void click_marker_v(int x, int y)
         {
             //[x, y]
-            vol_min_n_max();
             float[] point = get_cursor_x_y(x, y, true);
             distant_v.Clear();
             for(int i = 0; i < display_v_index.Count; i++)
@@ -1043,15 +1073,13 @@ namespace YG
             }
             else
             {
-                set_marker(distant_v.IndexOf(distant_v.Min()), true);
-                form.set_marker_bar_v(distant_v.IndexOf(distant_v.Min()));
+                form.get_marker_bar_v().Value = num;
             }
         }
 
-        public void clilck_marker_c(int x, int y)
+        public void click_marker_c(int x, int y)
         {
             //[x, y]
-            cur_min_n_max();
             float[] point = get_cursor_x_y(x, y, false);
             distant_c.Clear();
             for (int i = 0; i < display_c_index.Count; i++)
@@ -1069,8 +1097,7 @@ namespace YG
             }
             else
             {
-                set_marker(distant_c.IndexOf(distant_c.Min()), false);
-                form.set_marker_bar_c(distant_c.IndexOf(distant_c.Min()));
+                form.get_marker_bar_c().Value = num;
             }
         }
 

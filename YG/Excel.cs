@@ -1,17 +1,25 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
 namespace YG
 {
-    internal class Excel_Class
+    public class Excel_Class
     {
         private Form1 form = null;
         static Excel.Application excel = null;
         static Workbook wb = null;
         static Worksheet ws = null;
+        public string file_name = "";
+        string folder_location = System.Windows.Forms.Application.StartupPath;
+        private List<float> x = new List<float>();
+        private List<float> y_v = new List<float>();
+        private List<float> y_c = new List<float>();
 
         public Excel_Class(Form1 form)
         {
@@ -87,7 +95,7 @@ namespace YG
 
             // Add chart.
             var charts2 = worksheet2.ChartObjects() as ChartObjects;
-            var chartObject2 = charts2.Add(240, 310,100 +form.get_x().Count * 10, 300);
+            var chartObject2 = charts2.Add(240, 310, 100 + form.get_x().Count * 10, 300);
             var chart2 = chartObject2.Chart;
             // Set chart range.
             string lu_c = "C2";
@@ -106,17 +114,65 @@ namespace YG
         }
         private void save_excel()
         {
-            string file_name;
-            SaveFileDialog file_dialog = new SaveFileDialog();
-            file_dialog.OverwritePrompt = true;
-
-            if(file_dialog.ShowDialog() == DialogResult.OK)
+            if (file_name == "")
             {
-                file_name = file_dialog.FileName;
+                file_name = "ezDAQ-Monitor" + DateTime.Now.ToString("yyyy-MM-dd hh:mm");
+            }
+            FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
+
+            if (folder_dialog.ShowDialog() == DialogResult.OK)
+            {
+                file_name = folder_dialog.SelectedPath + file_name;
                 wb.SaveAs(file_name, XlFileFormat.xlWorkbookDefault);
             }
         }
-    }
 
-    
+        public void read_excel()
+        {
+            OpenFileDialog folder_dialog = new OpenFileDialog();
+            folder_dialog.InitialDirectory = ".";
+            if (folder_dialog.ShowDialog() == DialogResult.OK)
+            {
+                //선택한 파일 경로
+                file_name = folder_dialog.FileName;
+                //이름이 null이 아니고 파일 타입이 .xlsx인 경우에만 실행
+                if (file_name != null && file_name.EndsWith(".xlsx"))
+                {
+                    excel = new Excel.Application();                             // 엑셀 어플리케이션 생성
+                    wb = excel.Workbooks.Open(file_name);                       // 워크북 열기
+                    ws = wb.Worksheets.get_Item(1) as Excel.Worksheet; // 엑셀 첫번째 워크시트 가져오기
+                    form.get_vol_graph().Series[0].Points.Clear();//그래프 초기화하기
+                    form.get_cur_graph().Series[0].Points.Clear();
+
+
+                    Range range = ws.UsedRange;    // 사용중인 셀 범위를 가져오기
+
+                    //row == 1(ms)
+                    for (int row = 2; row <= range.Rows.Count; row++)  // 가져온 열 만큼 반복
+                    {
+                        x.Add((float)(range.Cells[row, 1] as Range).Value2);//x값을 가져온다
+                    }
+                    //row == 2(V)
+                    for (int row = 2; row <= range.Rows.Count; row++)  // 가져온 열 만큼 반복
+                    {
+                        y_v.Add((float)(range.Cells[row, 2] as Range).Value2);//vol y값을 가져온다.
+                        form.get_vol_graph().Series[0].Points.AddXY(x[row-2], y_v[row-2]);//x값과 함께 그래프로 그린다.
+                        if (x[row-2] > 10000)
+                            form.get_vhscrollbar().Maximum = (int)x[row - 2];//스크롤바 범위를 넘어가면 늘려준다.
+                    }
+                    //row == 3(mA)
+                    for (int row = 2; row <= range.Rows.Count; row++)  // 가져온 열 만큼 반복
+                    {
+                        y_c.Add((float)(range.Cells[row, 3] as Range).Value2);//cur y값을 가져온다.
+                        form.get_cur_graph().Series[0].Points.AddXY(x[row - 2], y_c[row - 2]);//x값과 함께 그래프로 그린다.
+                        if (x[row - 2] > 10000)
+                            form.get_chscrollbar().Maximum = (int)x[row - 2];//스크롤바 범위를 넘어가면 늘려준다.
+                    }
+                    form.set_x(x);
+                    form.set_y_v(y_v);
+                    form.set_y_c(y_c);
+                }
+            }
+        }
+    }
 }
